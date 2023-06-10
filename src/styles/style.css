@@ -1,0 +1,108 @@
+:root {
+  --rust: #a94d22ff;
+  --flax: #e8d682ff;
+  --dark-goldenrod: #9c7f13ff;
+  --green: #88ad45ff;
+  --saffron: #edc74cff;
+}
+
+section {
+  display: flex;
+  flex-direction: row;
+  margin: 0 20%;
+  margin-bottom: 10%;
+}
+
+.subtitle {
+  color: var(--green);
+  font-style: italic;
+}
+
+@keyframes fillWidth {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  100% {
+    width: 86px;
+    opacity: 1;
+  }
+}
+
+.line {
+  width: 86px;
+  height: 5px;
+  background-color: var(--green);
+  display: block;
+  animation: fillWidth 6s forwards;
+}
+
+#main-title {
+  text-align: center;
+  margin-bottom: 2.5%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+}
+
+aside {
+  width: 50%;
+  margin-right: 5%;
+}
+
+img {
+  width: 407px;
+  height: 602px;
+  border-radius: 2.5%;
+}
+
+p {
+  line-height: 1.5em;
+  font-size: 16px;
+}
+
+footer {
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+a {
+  color: inherit;
+  position: relative;
+  text-decoration: none;
+}
+
+a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background-color: var(--green);
+  transition: width 0.3s ease-out;
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+nav > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 20%;
+}
+
+nav > div > a {
+  font-size: 16px;
+  font-weight: bold;
+}
