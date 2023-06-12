@@ -14,19 +14,45 @@
     </section>
     <section class="featured-products">
       <h2>Nos produits phares</h2>
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
+      <section class="container">
+        <ProductCard
+          v-for="item in products"
+          :name="item.name"
+          :price="item.price"
+          :picture="item.picture"
+        />
+      </section>
     </section>
   </main>
 </template>
 
 <script>
+import axios from "axios";
 import ProductCard from "../components/ProductCard.vue";
 export default {
   name: "Home",
   components: {
     ProductCard,
+  },
+  data() {
+    return {
+      products: [], // Variable pour stocker les données récupérées
+    };
+  },
+  mounted() {
+    this.fetchProducts(); // Appel de la méthode pour récupérer les produits lors du montage du composant
+  },
+  methods: {
+    fetchProducts() {
+      axios
+        .get("http://localhost:8888/productSelection.php") // Remplacez l'URL par l'URL de votre API
+        .then((response) => {
+          this.products = response.data; // Stockage des données dans la variable "products"
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
 };
 </script>
@@ -66,8 +92,14 @@ nav li {
 
 /* Section hero */
 .hero {
-  position: relative;
-  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding: 5% 5%;
+  background-color: var(--flax);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
 }
 
 .hero h2 {
@@ -87,12 +119,20 @@ nav li {
 
 /* Section produits phares */
 .featured-products {
-  background-color: #fff;
+  background-color: var(--green);
   padding: 40px 0;
   text-align: center;
 }
 
 .featured-products h2 {
   margin-bottom: 30px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 30px;
+  grid-row-gap: 0px;
 }
 </style>

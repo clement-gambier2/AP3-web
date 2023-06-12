@@ -16,3 +16,9 @@ export default {
   name: "Navbar",
 };
 </script>
+
+<style scoped>
+nav {
+  padding-bottom: 2.5%;
+}
+</style>
