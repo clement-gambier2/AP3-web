@@ -1,16 +1,9 @@
 :root {
-  --rust: #a94d22ff;
-  --flax: #e8d682ff;
+  --rust: rgb(169, 34, 34);
+  --flax: rgb(255, 208, 0);
   --dark-goldenrod: #9c7f13ff;
   --green: #88ad45ff;
   --saffron: #edc74cff;
-}
-
-section {
-  display: flex;
-  flex-direction: row;
-  margin: 0 20%;
-  margin-bottom: 10%;
 }
 
 .subtitle {
