@@ -1,11 +1,13 @@
 <template>
   <main>
+    <h2>Nos produits</h2>
     <section class="parent">
       <ProductCard
         v-for="item in products"
         :name="item.name"
         :price="item.price"
         :picture="item.picture"
+        :id="item.id"
       />
     </section>
   </main>
@@ -21,18 +23,18 @@ export default {
   },
   data() {
     return {
-      products: [], // Variable pour stocker les données récupérées
+      products: [],
     };
   },
   mounted() {
-    this.fetchProducts(); // Appel de la méthode pour récupérer les produits lors du montage du composant
+    this.fetchProducts();
   },
   methods: {
     fetchProducts() {
       axios
-        .get("http://localhost:8888/products.php") // Remplacez l'URL par l'URL de votre API
+        .get("http://localhost:8888/products.php")
         .then((response) => {
-          this.products = response.data; // Stockage des données dans la variable "products"
+          this.products = response.data;
         })
         .catch((error) => {
           console.log(error);
@@ -46,7 +48,7 @@ export default {
 .parent {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   grid-column-gap: 20px;
   grid-row-gap: 30px;
 }

@@ -3,10 +3,10 @@
     <h1>Avocado Home</h1>
     <div>
       <router-link to="/">Accueil</router-link>
-      <a href="#"></a>
       <router-link to="/products">Nos produits</router-link>
       <router-link to="/about">A propos</router-link>
       <router-link to="/checkout">Votre panier</router-link>
+      <router-link to="/admin" class="admin-btn">Espace Admin</router-link>
     </div>
   </nav>
 </template>
@@ -20,5 +20,29 @@ export default {
 <style scoped>
 nav {
   padding-bottom: 2.5%;
+}
+.admin-btn {
+  background-color: #f5f5f5;
+  color: #000;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-left: 10px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+nav > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 20%;
+}
+
+nav > div > a {
+  font-size: 16px;
+  font-weight: bold;
 }
 </style>

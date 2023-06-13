@@ -1,19 +1,47 @@
 <template>
   <div class="product-card">
     <img :src="picture" alt="Product 1" />
-    <h3>{{ name }}</h3>
+    <h3>{{ name }} {{ id }}</h3>
     <p>Prix : {{ price }}€</p>
-    <a href="#" class="btn">Ajouter au panier</a>
+    <div class="btn" @click="addToCart()">Ajouter au panier</div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "ProductCard",
   props: {
     name: String,
     price: String,
     picture: String,
+    id: String,
+  },
+  data() {
+    return {
+      product: [],
+    };
+  },
+  methods: {
+    fetchProduct(id) {
+      axios
+        .get(`http://localhost:8888/uniqueProduct.php/?id=${id}`)
+        .then((response) => {
+          this.product = response.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    addToCart() {
+      let addProduct = {
+        id: this.id,
+        name: this.name,
+        price: this.price,
+        picture: this.picture,
+      };
+      this.$store.dispatch("addToCart", addProduct);
+    },
   },
 };
 </script>
@@ -49,20 +77,5 @@ export default {
 
 .product-card p {
   margin: 10px 0;
-}
-
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: var(--saffron);
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  text-decoration: none;
-  transition: background-color 0.3s;
-}
-.btn:hover {
-  background-color: var(--rust);
 }
 </style>

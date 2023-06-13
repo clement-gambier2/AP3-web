@@ -1,10 +1,10 @@
-import { createRouter, createWebHistory } from "vue-router"; // Updated import statement
+import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 
 const routes = [
   {
     path: "/",
-    component: Home, // Example component name
+    component: Home,
   },
   {
     path: "/products",
@@ -24,10 +24,26 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "resetRequest" */ "../views/Checkout.vue"),
   },
+  {
+    path: "/admin",
+    name: "Admin panel",
+    component: () =>
+      import(
+        /* webpackChunkName: "resetRequest" */ "../views/admin/AdminPanel.vue"
+      ),
+  },
+  {
+    path: "/admin/updateProduct/:id",
+    name: "Update product",
+    component: () =>
+      import(
+        /* webpackChunkName: "resetRequest" */ "../views/admin/UpdateProduct.vue"
+      ),
+  },
 ];
 
 const router = createRouter({
-  history: createWebHistory(), // Use createWebHistory for clean URLs
+  history: createWebHistory(),
   routes,
 });
 

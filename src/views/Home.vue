@@ -36,18 +36,18 @@ export default {
   },
   data() {
     return {
-      products: [], // Variable pour stocker les données récupérées
+      products: [], 
     };
   },
   mounted() {
-    this.fetchProducts(); // Appel de la méthode pour récupérer les produits lors du montage du composant
+    this.fetchProducts();
   },
   methods: {
     fetchProducts() {
       axios
-        .get("http://localhost:8888/productSelection.php") // Remplacez l'URL par l'URL de votre API
+        .get("http://localhost:8888/productSelection.php") 
         .then((response) => {
-          this.products = response.data; // Stockage des données dans la variable "products"
+          this.products = response.data; 
         })
         .catch((error) => {
           console.log(error);
