@@ -1,6 +1,7 @@
 <template>
   <main>
     <h2>Nos produits</h2>
+    <span class="line"></span>
     <section class="parent">
       <ProductCard
         v-for="item in products"
@@ -32,7 +33,7 @@ export default {
   methods: {
     fetchProducts() {
       axios
-        .get("http://localhost:8888/products.php")
+        .get("http://localhost:8888/router.php?route=products")
         .then((response) => {
           this.products = response.data;
         })

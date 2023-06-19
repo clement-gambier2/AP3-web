@@ -7,6 +7,9 @@
       <router-link to="/about">A propos</router-link>
       <router-link to="/checkout">Votre panier</router-link>
       <router-link to="/admin" class="admin-btn">Espace Admin</router-link>
+      <a v-if="this.$store.getters.isConnected" @click="logout()">
+        Se déconnecter
+      </a>
     </div>
   </nav>
 </template>
@@ -14,6 +17,11 @@
 <script>
 export default {
   name: "Navbar",
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+    },
+  },
 };
 </script>
 

@@ -1,10 +1,12 @@
 <template>
-  <div class="product-card">
-    <img :src="picture" alt="Product 1" />
-    <h3>{{ name }} {{ id }}</h3>
-    <p>Prix : {{ price }}€</p>
+  <main class="product-card">
+    <div @click="switchToProductDetail()" class="product-card-sub">
+      <img :src="picture" alt="Product picture" />
+      <h3>{{ name }}</h3>
+      <p>Prix : {{ price }}€</p>
+    </div>
     <div class="btn" @click="addToCart()">Ajouter au panier</div>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -23,10 +25,14 @@ export default {
     };
   },
   methods: {
+    switchToProductDetail() {
+      this.$router.push(`/product-details/${this.id}`);
+    },
     fetchProduct(id) {
       axios
-        .get(`http://localhost:8888/uniqueProduct.php/?id=${id}`)
+        .get(`http://localhost:8888/uniqueProduct.php/?id=${this.id}`)
         .then((response) => {
+          console.log(response.data);
           this.product = response.data;
         })
         .catch((error) => {
@@ -63,19 +69,19 @@ export default {
   transform: translateY(-5px);
 }
 
-.product-card img {
+.product-card-sub img {
   width: 200px;
   height: 200px;
   object-fit: cover;
   margin-bottom: 10px;
 }
 
-.product-card h3 {
+.product-card-sub h3 {
   margin: 0;
   font-size: 20px;
 }
 
-.product-card p {
+.product-card-sub p {
   margin: 10px 0;
 }
 </style>

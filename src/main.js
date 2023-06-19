@@ -5,7 +5,7 @@ import App from "./App.vue";
 import router from "./router/router.js";
 import store from "./store/store.js";
 
-store.commit("loadCartFromLocalStorage");
+store.commit("loadFromLocalStorage");
 
 createApp(App)
   .use(router) // Add the router instance to the app

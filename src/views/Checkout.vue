@@ -8,12 +8,25 @@
           <th>Prix</th>
           <th>Quantité</th>
           <th>Total</th>
-          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="item in cartItems" :key="item.id">
-          <td>{{ item.name }}</td>
+          <td id="name-align">
+            {{ item.name }}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="30"
+              viewBox="0 -960 960 960"
+              width="30"
+              fill="#e63946"
+              @click="removeFromCart(item.id)"
+            >
+              <path
+                d="M261-120q-24.75 0-42.375-17.625T201-180v-570h-41v-60h188v-30h264v30h188v60h-41v570q0 24-18 42t-42 18H261Zm438-630H261v570h438v-570ZM367-266h60v-399h-60v399Zm166 0h60v-399h-60v399ZM261-750v570-570Z"
+              />
+            </svg>
+          </td>
           <td>{{ item.price }}€</td>
           <td>
             <input
@@ -25,18 +38,12 @@
             />
           </td>
           <td>{{ item.quantity * item.price }}€</td>
-          <td>
-            <button @click="removeFromCart(item.id)">
-              Supprimer {{ item.id }}
-            </button>
-          </td>
         </tr>
       </tbody>
       <tfoot>
         <tr>
           <td colspan="3">Total</td>
           <td>{{ cartTotalPrice }}€</td>
-          <td></td>
         </tr>
       </tfoot>
     </table>
@@ -45,7 +52,9 @@
       <button class="pay-now-button" @click="submitForm()">
         Payer maintenant
       </button>
-      <button class="continue-shopping-button">Continuer les achats</button>
+      <button class="continue-shopping-button">
+        <router-link to="/products">Continuer les achats</router-link>
+      </button>
     </div>
   </main>
 </template>
@@ -120,6 +129,11 @@ td {
   border: 1px solid #ccc;
   padding: 10px;
   text-align: left;
+}
+#name-align {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 th {

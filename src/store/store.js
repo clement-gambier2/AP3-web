@@ -3,6 +3,7 @@ import Vuex from "vuex";
 export default new Vuex.Store({
   state: {
     cartItems: [], // Tableau des produits dans le panier
+    isConnected: false,
   },
   mutations: {
     addToCart(state, product) {
@@ -16,12 +17,12 @@ export default new Vuex.Store({
       } else {
         state.cartItems.push({ ...product, quantity: 1 });
       }
-      this.commit("saveCartToLocalStorage");
+      this.commit("saveToLocalStorage");
     },
     removeFromCart(state, productId) {
       // Supprime le produit du panier
       state.cartItems = state.cartItems.filter((item) => item.id !== productId);
-      this.commit("saveCartToLocalStorage");
+      this.commit("saveToLocalStorage");
     },
     updateCartItemQuantity(state, payload) {
       // Met à jour la quantité d'un produit dans le panier
@@ -35,14 +36,27 @@ export default new Vuex.Store({
       // Vide le panier
       state.cartItems = [];
     },
-    saveCartToLocalStorage(state) {
+    saveToLocalStorage(state) {
       localStorage.setItem("cart", JSON.stringify(state.cartItems));
+      localStorage.setItem("isConnected", JSON.stringify(state.isConnected));
     },
-    loadCartFromLocalStorage(state) {
+    loadFromLocalStorage(state) {
       const cart = localStorage.getItem("cart");
       if (cart) {
         state.cartItems = JSON.parse(cart);
       }
+      const isConnected = localStorage.getItem("isConnected");
+      if (isConnected) {
+        state.isConnected = JSON.parse(isConnected);
+      }
+    },
+    setIsConnected(state, isConnected) {
+      state.isConnected = isConnected;
+      this.commit("saveToLocalStorage");
+    },
+    logout(state) {
+      state.isConnected = false;
+      this.commit("saveToLocalStorage");
     },
   },
   actions: {
@@ -58,8 +72,12 @@ export default new Vuex.Store({
     clearCart({ commit }) {
       commit("clearCart");
     },
+    logout({ commit }) {
+      commit("logout");
+    },
   },
   getters: {
+    isConnected: (state) => state.isConnected,
     cartItems: (state) => state.cartItems,
     cartTotalItems: (state) => state.cartItems.length,
     cartTotalPrice: (state) => {

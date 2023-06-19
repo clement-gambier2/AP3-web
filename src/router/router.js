@@ -13,6 +13,14 @@ const routes = [
       import(/* webpackChunkName: "resetRequest" */ "../views/Products.vue"),
   },
   {
+    path: "/product-details/:id",
+    name: "Product details",
+    component: () =>
+      import(
+        /* webpackChunkName: "resetRequest" */ "../views/ProductDetails.vue"
+      ),
+  },
+  {
     path: "/about",
     name: "About",
     component: () =>

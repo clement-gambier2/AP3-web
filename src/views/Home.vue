@@ -36,7 +36,7 @@ export default {
   },
   data() {
     return {
-      products: [], 
+      products: [],
     };
   },
   mounted() {
@@ -45,9 +45,9 @@ export default {
   methods: {
     fetchProducts() {
       axios
-        .get("http://localhost:8888/productSelection.php") 
+        .get("http://localhost:8888/router.php?route=productSelection")
         .then((response) => {
-          this.products = response.data; 
+          this.products = response.data;
         })
         .catch((error) => {
           console.log(error);
