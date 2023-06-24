@@ -49,7 +49,7 @@ export default {
     },
     fetchProduct() {
       axios
-        .post("http://localhost:8888/router.php/", {
+        .post("http://s3-4959.nuage-peda.fr/eval/router.php/", {
           route: "uniqueProduct",
           id: this.$route.params.id,
         })

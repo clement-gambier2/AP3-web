@@ -57,16 +57,12 @@
       </section>
     </main>
     <div v-else class="product-form">
-      <input
-        v-model="email"
-        placeholder="myLovelyAvocado@avocado-home.fr"
-        type="email"
-      />
-      <input v-model="password" placeholder="avocadoLove" type="password" />
+      <input v-model="email" placeholder="email" type="email" />
+      <input v-model="password" placeholder="mot de passe" type="password" />
       <button @click="login">Se connecter</button>
       <div class="align-info">
-        <p>email: myLovelyAvocado@avocado-home.fr</p>
-        <p>mot de passe: avocadoLove</p>
+        <p>email: avocado@love.fr</p>
+        <p>mot de passe: avocat</p>
         <p style="color: var(--rust)">
           {{ isIncorrect ? "Mauvais identifiants" : "" }}
         </p>
@@ -84,8 +80,8 @@ export default {
     return {
       products: [],
       orders: [],
-      email: "avocado@love.fr",
-      password: "avocat",
+      email: "",
+      password: "",
       isIncorrect: false,
     };
   },
@@ -101,7 +97,7 @@ export default {
   methods: {
     login() {
       axios
-        .post("http://localhost:8888/router.php", {
+        .post("http://s3-4959.nuage-peda.fr/eval/router.php", {
           route: "login",
           email: this.email,
           password: this.password,
@@ -121,7 +117,7 @@ export default {
     },
     fetchProducts() {
       axios
-        .get("http://localhost:8888/router.php?route=products")
+        .get("http://s3-4959.nuage-peda.fr/eval/router.php?route=products")
         .then((response) => {
           this.products = response.data;
         })
@@ -131,7 +127,7 @@ export default {
     },
     fetchOrders() {
       axios
-        .get("http://localhost:8888/router.php?route=orders")
+        .get("http://s3-4959.nuage-peda.fr/eval/router.php?route=orders")
         .then((response) => {
           this.orders = response.data;
         })
