@@ -35,7 +35,7 @@ export default {
   methods: {
     fetchProduct() {
       axios
-        .post("http://s3-4959.nuage-peda.fr/eval/router.php/", {
+        .post("https://s3-4959.nuage-peda.fr/eval/router.php/", {
           route: "uniqueProduct",
           id: this.$route.params.id,
         })
@@ -48,7 +48,7 @@ export default {
     },
     submitForm() {
       axios
-        .put(`http://s3-4959.nuage-peda.fr/eval/router.php`, {
+        .put(`https://s3-4959.nuage-peda.fr/eval/router.php`, {
           route: "updateProduct",
           product: this.product,
         })

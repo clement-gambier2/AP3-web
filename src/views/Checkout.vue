@@ -86,7 +86,7 @@ export default {
     },
     submitForm() {
       axios
-        .post(`http://localhost:8888/router.php`, {
+        .post(`https://localhost:8888/router.php`, {
           route: "addOrder",
           total: this.cartTotalPrice,
         })

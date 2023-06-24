@@ -97,7 +97,7 @@ export default {
   methods: {
     login() {
       axios
-        .post("http://s3-4959.nuage-peda.fr/eval/router.php", {
+        .post("https://s3-4959.nuage-peda.fr/eval/router.php", {
           route: "login",
           email: this.email,
           password: this.password,
@@ -117,7 +117,7 @@ export default {
     },
     fetchProducts() {
       axios
-        .get("http://s3-4959.nuage-peda.fr/eval/router.php?route=products")
+        .get("https://s3-4959.nuage-peda.fr/eval/router.php?route=products")
         .then((response) => {
           this.products = response.data;
         })
@@ -127,7 +127,7 @@ export default {
     },
     fetchOrders() {
       axios
-        .get("http://s3-4959.nuage-peda.fr/eval/router.php?route=orders")
+        .get("https://s3-4959.nuage-peda.fr/eval/router.php?route=orders")
         .then((response) => {
           this.orders = response.data;
         })

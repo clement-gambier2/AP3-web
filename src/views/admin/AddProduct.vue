@@ -62,7 +62,7 @@ export default {
   methods: {
     submitForm() {
       axios
-        .post(`http://s3-4959.nuage-peda.fr/eval/router.php/`, {
+        .post(`https://s3-4959.nuage-peda.fr/eval/router.php/`, {
           route: "addProduct",
           product: this.product,
         })
