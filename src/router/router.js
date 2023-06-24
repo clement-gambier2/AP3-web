@@ -48,6 +48,20 @@ const routes = [
         /* webpackChunkName: "resetRequest" */ "../views/admin/UpdateProduct.vue"
       ),
   },
+  {
+    path: "/admin/addProduct",
+    name: "Add product",
+    component: () =>
+      import(
+        /* webpackChunkName: "resetRequest" */ "../views/admin/AddProduct.vue"
+      ),
+  },
+  {
+    path: "/work",
+    name: "Work",
+    component: () =>
+      import(/* webpackChunkName: "resetRequest" */ "../views/Work.vue"),
+  },
 ];
 
 const router = createRouter({

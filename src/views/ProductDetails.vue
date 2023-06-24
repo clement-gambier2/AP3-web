@@ -1,11 +1,26 @@
 <template>
-  <main class="product-details">
-    <img :src="product.picture" alt="Product 1" />
-    <h1 class="product-name">{{ product.name }}</h1>
-    <p class="product-price">{{ product.price }}€</p>
-    <p class="product-description">{{ product.description }}</p>
-    <p class="product-quantity">Quantité disponible: {{ product.quantity }}</p>
-    <div class="btn" @click="addToCart()">Ajouter au panier</div>
+  <main>
+    <h2>Détail de produit</h2>
+    <span class="line"></span>
+    <section class="product-details">
+      <aside>
+        <img
+          :src="product.picture"
+          alt="Product 1"
+          class="go-up"
+          :class="{ animated: animateImage }"
+        />
+      </aside>
+      <aside>
+        <h1 class="product-name">{{ product.name }}</h1>
+        <p class="product-price">{{ product.price }}€</p>
+        <p class="product-description">{{ product.description }}</p>
+        <p class="product-quantity">
+          Quantité disponible: {{ product.quantity }}
+        </p>
+        <div class="btn" @click="addToCart()">Ajouter au panier</div>
+      </aside>
+    </section>
   </main>
 </template>
 
@@ -19,6 +34,7 @@ export default {
   data() {
     return {
       product: {},
+      animateImage: false,
     };
   },
   methods: {
@@ -30,15 +46,14 @@ export default {
         picture: this.product.picture,
       };
       this.$store.dispatch("addToCart", addProduct);
-      console.log("add to cart");
     },
     fetchProduct() {
       axios
-        .get(
-          `http://localhost:8888/uniqueProduct.php/?id=${this.$route.params.id}`
-        )
+        .post("http://localhost:8888/router.php/", {
+          route: "uniqueProduct",
+          id: this.$route.params.id,
+        })
         .then((response) => {
-          console.log(response.data);
           this.product = response.data;
         })
         .catch((error) => {
@@ -54,6 +69,10 @@ export default {
 
 <style scoped>
 .product-details {
+  display: flex;
+  align-items: center;
+}
+aside {
   text-align: center;
 }
 
@@ -81,5 +100,22 @@ img {
   width: 300px;
   height: auto;
   margin-top: 20px;
+  transition: transform 10s infinite linear;
+}
+
+.animated {
+  animation-name: infiniteMovement;
+}
+
+@keyframes infiniteMovement {
+  0% {
+    transform: translateX(-50%) translateY(-50%);
+  }
+  50% {
+    transform: translateX(50%) translateY(50%);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-50%);
+  }
 }
 </style>

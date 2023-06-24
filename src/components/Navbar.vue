@@ -10,6 +10,7 @@
       <a v-if="this.$store.getters.isConnected" @click="logout()">
         Se déconnecter
       </a>
+      <router-link to="/work" class="admin-btn">Travail</router-link>
     </div>
   </nav>
 </template>
@@ -20,6 +21,7 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("logout");
+      this.$router.push("/");
     },
   },
 };
@@ -52,5 +54,24 @@ nav > div {
 nav > div > a {
   font-size: 16px;
   font-weight: bold;
+}
+
+h1 {
+  font-family: "Kablammo", cursive;
+  font-size: 45px;
+  background-color: var(--rust);
+  background-image: linear-gradient(
+    90deg,
+    var(--green),
+    var(--rust),
+    var(--floral-white)
+  );
+
+  background-size: 100%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
 }
 </style>

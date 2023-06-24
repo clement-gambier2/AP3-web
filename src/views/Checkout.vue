@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h1>Récapitulatif de commande</h1>
+    <h1 class="mexican-title">Récapitulatif de commande</h1>
     <table>
       <thead>
         <tr>
@@ -86,7 +86,10 @@ export default {
     },
     submitForm() {
       axios
-        .post(`http://localhost:8888/addOrder.php`, this.cartTotalPrice)
+        .post(`http://localhost:8888/router.php`, {
+          route: "addOrder",
+          total: this.cartTotalPrice,
+        })
         .then((response) => {
           console.log(response.data);
           this.clearCart();

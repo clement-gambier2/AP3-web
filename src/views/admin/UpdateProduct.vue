@@ -35,9 +35,10 @@ export default {
   methods: {
     fetchProduct() {
       axios
-        .get(
-          `http://localhost:8888/uniqueProduct.php/?id=${this.$route.params.id}`
-        )
+        .post("http://localhost:8888/router.php/", {
+          route: "uniqueProduct",
+          id: this.$route.params.id,
+        })
         .then((response) => {
           this.product = response.data;
         })
@@ -46,11 +47,12 @@ export default {
         });
     },
     submitForm() {
+      // .put(`http://localhost:8888/updateProduct.php/?id=${this.$route.params.id}`,this.product)
       axios
-        .put(
-          `http://localhost:8888/updateProduct.php/?id=${this.$route.params.id}`,
-          this.product
-        )
+        .put(`http://localhost:8888/router.php`, {
+          route: "updateProduct",
+          product: this.product,
+        })
         .then((response) => {
           console.log(response.data); // Affiche la réponse de l'API
           this.$router.push("/admin");

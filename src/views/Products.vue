@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h2>Nos produits</h2>
+    <h2 class="mexican-title">Nos produits</h2>
     <span class="line"></span>
     <section class="parent">
       <ProductCard
@@ -31,6 +31,7 @@ export default {
     this.fetchProducts();
   },
   methods: {
+    // .get("http://s3-4959.nuage-peda.fr/eval/router.php?route=products")
     fetchProducts() {
       axios
         .get("http://localhost:8888/router.php?route=products")

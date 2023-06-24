@@ -2,26 +2,28 @@
   <main>
     <section class="hero">
       <div class="hero-content">
-        <h2>Découvrez notre sélection d'avocats</h2>
+        <div>
+          <h2 class="subtitle">Welcome to</h2>
+          <h2 class="title">Avocado Home</h2>
+        </div>
+        <p>Découvrez notre sélection d'avocats</p>
         <p>Des produits frais et savoureux pour tous les amateurs d'avocat.</p>
         <router-link to="/products" class="btn">Voir les produits</router-link>
       </div>
-      <img
-        src="../assets/avocado-hero.avif"
-        alt="Avocado Hero"
-        class="hero-image"
-      />
+
+      <img src="../assets/avocado-home.png" alt="" />
     </section>
     <section class="featured-products">
-      <h2>Nos produits phares</h2>
-      <section class="container">
+      <h2 class="mexican-title">Nos produits phares</h2>
+      <div class="product-list">
         <ProductCard
           v-for="item in products"
+          :key="item.id"
           :name="item.name"
           :price="item.price"
           :picture="item.picture"
         />
-      </section>
+      </div>
     </section>
   </main>
 </template>
@@ -63,58 +65,37 @@ h2,
 h3 {
   color: var(--rust);
 }
-
-a {
-  color: var(--dark-goldenrod);
-  text-decoration: none;
-}
-
-a:hover {
+.subtitle {
+  font-family: "Kablammo", cursive;
+  font-size: 40px;
+  text-shadow: -7px 7px 0px #fff;
   color: var(--green);
 }
 
-/* En-tête */
-header {
-  background-color: var(--flax);
-  padding: 20px;
-}
-
-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-}
-
-nav li {
-  margin-right: 20px;
+.title {
+  font-family: "Kablammo", cursive;
+  font-size: 90px;
+  text-shadow: -7px 7px 0px #fff;
 }
 
 /* Section hero */
 .hero {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   padding: 5% 5%;
-  background-color: var(--flax);
+  background: linear-gradient(to right, var(--flax), var(--floral-white));
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s;
 }
 
-.hero h2 {
-  font-size: 36px;
-  margin-bottom: 20px;
+.hero-content {
+  text-align: center;
 }
 
 .hero p {
   font-size: 18px;
   margin-bottom: 30px;
-}
-
-.hero-image {
-  width: 25%;
-  height: auto;
 }
 
 /* Section produits phares */
@@ -128,11 +109,9 @@ nav li {
   margin-bottom: 30px;
 }
 
-.container {
+.product-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: 30px;
-  grid-row-gap: 0px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
 }
 </style>

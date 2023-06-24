@@ -6,7 +6,7 @@
 
     <section>
       <aside class="slide-in-textLeft">
-        <h2>AVOCADO IS LOVE, AVOCADO IS LIFE</h2>
+        <h2 class="mexican-title">AVOCADO IS LOVE, AVOCADO IS LIFE</h2>
         <span class="line"></span>
         <p>
           Bienvenue sur notre site de commerce dédié à l'avocat, le légume vert
@@ -28,7 +28,7 @@
 
       <aside class="slide-in-textRight">
         <img src="../assets/avocado2.avif" class="hvr-grow" alt="" />
-        <h2>LA VIE EST SI TRISTE SANS AVOCATS</h2>
+        <h2 class="mexican-title">LA VIE EST SI TRISTE SANS AVOCATS</h2>
         <span class="line"></span>
         <p>
           Que vous souhaitiez savourer un avocat mûr à point pour vos salades et

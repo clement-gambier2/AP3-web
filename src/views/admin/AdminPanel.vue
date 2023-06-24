@@ -10,7 +10,6 @@
               <th>Numéro de commande</th>
               <th>Date</th>
               <th>Prix total</th>
-              <!-- <th>Modifier</th> -->
             </tr>
           </thead>
           <tbody>
@@ -18,11 +17,6 @@
               <td>{{ item.id }}</td>
               <td>{{ item.orderDate }}</td>
               <td>{{ item.totalPrice }}€</td>
-              <!-- <td>
-              <router-link :to="'/admin/updateProduct/' + item.id" class="btn"
-                >Modifier</router-link
-              >
-            </td> -->
             </tr>
           </tbody>
         </table>
@@ -55,6 +49,11 @@
             </tr>
           </tbody>
         </table>
+        <div class="center">
+          <router-link to="/admin/addProduct" class="btn"
+            >Ajouter un produit</router-link
+          >
+        </div>
       </section>
     </main>
     <div v-else class="product-form">
@@ -65,6 +64,13 @@
       />
       <input v-model="password" placeholder="avocadoLove" type="password" />
       <button @click="login">Se connecter</button>
+      <div class="align-info">
+        <p>email: myLovelyAvocado@avocado-home.fr</p>
+        <p>mot de passe: avocadoLove</p>
+        <p style="color: var(--rust)">
+          {{ isIncorrect ? "Mauvais identifiants" : "" }}
+        </p>
+      </div>
     </div>
   </main>
 </template>
@@ -80,6 +86,7 @@ export default {
       orders: [],
       email: "avocado@love.fr",
       password: "avocat",
+      isIncorrect: false,
     };
   },
   computed: {
@@ -94,15 +101,17 @@ export default {
   methods: {
     login() {
       axios
-        .post("http://localhost:8888/login.php", {
+        .post("http://localhost:8888/router.php", {
+          route: "login",
           email: this.email,
           password: this.password,
         })
         .then((response) => {
+          console.log(response.data);
           if (response.data.success) {
             this.$store.commit("setIsConnected", true);
           } else {
-            // alert("Mauvais identifiants");
+            this.isIncorrect = true;
             console.log(response.data);
           }
         })
@@ -112,7 +121,7 @@ export default {
     },
     fetchProducts() {
       axios
-        .get("http://localhost:8888/products.php")
+        .get("http://localhost:8888/router.php?route=products")
         .then((response) => {
           this.products = response.data;
         })
@@ -122,7 +131,7 @@ export default {
     },
     fetchOrders() {
       axios
-        .get("http://localhost:8888/orders.php")
+        .get("http://localhost:8888/router.php?route=orders")
         .then((response) => {
           this.orders = response.data;
         })
@@ -202,5 +211,14 @@ button {
 
 button:hover {
   background-color: #45a049;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.align-info {
+  text-align: center;
 }
 </style>

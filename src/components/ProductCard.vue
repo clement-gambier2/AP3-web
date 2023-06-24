@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   name: "ProductCard",
   props: {
@@ -27,17 +26,6 @@ export default {
   methods: {
     switchToProductDetail() {
       this.$router.push(`/product-details/${this.id}`);
-    },
-    fetchProduct(id) {
-      axios
-        .get(`http://localhost:8888/uniqueProduct.php/?id=${this.id}`)
-        .then((response) => {
-          console.log(response.data);
-          this.product = response.data;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
     },
     addToCart() {
       let addProduct = {
