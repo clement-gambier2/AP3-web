@@ -33,8 +33,8 @@ export default {
   methods: {
     fetchProducts() {
       axios
-        // .get("http://localhost:8888/router.php?route=products")
-        .get("http://s3-4959.nuage-peda.fr/eval/router.php?route=products")
+        .get("https://s3-4959.nuage-peda.fr/eval/router.php?route=products")
+        // .get("http://s3-4959.nuage-peda.fr/eval/router.php?route=products")
         .then((response) => {
           this.products = response.data;
         })
